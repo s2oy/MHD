@@ -1,10 +1,14 @@
 import pygame
+import time
 import random
 from pygame.rect import *
 # pygame 초기화
 # 키 이벤트 처리하기
 pygame.init()
 pygame.display.set_caption("mohamD")
+pygame.mixer.music.load("어젯밤이야기.mp3")
+pygame.mixer.music.play(-1)
+
 # =====함수=======
 #키 이벤트 처리하기
 def resultProcess(direction):
@@ -172,6 +176,9 @@ while(isActive):
     setText()
     drawResult()
     pygame.display.update()
+    time.sleep(60)
+    test_sound.stop()
     clock.tick(400)
+
 
 ##test
