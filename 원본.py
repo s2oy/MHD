@@ -1,16 +1,20 @@
 import pygame
-import time
 import random
 from pygame.rect import *
+
 # pygame 초기화
-# 키 이벤트 처리하기
+pygame.init()
+pygame.display.set_caption("MHD")
+background = pygame.image.load("background.png")
+
 pygame.init()
 pygame.display.set_caption("mohamD")
 pygame.mixer.music.load("어젯밤이야기.mp3")
 pygame.mixer.music.play(-1)
 
-# =====함수=======
-#키 이벤트 처리하기
+
+# ======== 함수 ===============================
+# 키 이벤트 처리하기
 def resultProcess(direction):
     global isColl, score, DrawResult, result_ticks
 
@@ -21,6 +25,7 @@ def resultProcess(direction):
     else:
         DrawResult = 2
     result_ticks = pygame.time.get_ticks()
+
 
 def eventProcess():
     global isActive, score, chance
@@ -43,8 +48,10 @@ def eventProcess():
                     chance = chance_MAX
                     for direc in Directions:
                         direc.y = -1
+
+
 ###################################################################################
-#방향 아이콘 클래스
+# 방향 아이콘 클래스
 class Direction(object):
     def __init__(self):
         self.pos = None
@@ -53,12 +60,12 @@ class Direction(object):
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.rotated_image = pygame.transform.rotate(self.image, 0)
         self.y = -1
-        self.x = int(SCREEN_WIDTH*0.75)-(self.image.get_width()/2)
+        self.x = int(SCREEN_WIDTH * 0.75) - (self.image.get_width() / 2)
 
     def rotate(self, direction=0):
         self.direction = direction
         self.rotated_image = pygame.transform.rotate(
-            self.image, 90*self.direction)
+            self.image, 90 * self.direction)
 
     def draw(self):
         if self.y >= SCREEN_HEIGHT:
@@ -70,10 +77,12 @@ class Direction(object):
             self.y += 1
             self.pos = screen.blit(self.rotated_image, (self.x, self.y))
             return False
+
+
 ###################################################################################
-#방향 아이콘 생성과 그리기
+# 방향 아이콘 생성과 그리기
 def drawIcon():
-    global start_ticks,chance
+    global start_ticks, chance
 
     if chance <= 0:
         return
@@ -90,8 +99,10 @@ def drawIcon():
     for direc in Directions:
         if direc.draw():
             chance -= 1
+
+
 ###################################################################################
-#타겟 영역 그리기와 충돌 확인하기
+# 타겟 영역 그리기와 충돌 확인하기
 def draw_targetArea():
     global isColl, CollDirection
     isColl = False
@@ -104,8 +115,10 @@ def draw_targetArea():
             pygame.draw.rect(screen, (255, 0, 0), targetArea)
             break
     pygame.draw.rect(screen, (0, 255, 0), targetArea, 5)
+
+
 ###################################################################################
-#문자 넣기
+# 문자 넣기
 def setText():
     global score, chance
     mFont = pygame.font.SysFont("굴림", 40)
@@ -120,11 +133,13 @@ def setText():
         mFont = pygame.font.SysFont("굴림", 90)
         mtext = mFont.render(f'Game over!!', True, 'red')
         tRec = mtext.get_rect()
-        tRec.centerx = SCREEN_WIDTH/2
-        tRec.centery = SCREEN_HEIGHT/2 - 40
+        tRec.centerx = SCREEN_WIDTH / 2
+        tRec.centery = SCREEN_HEIGHT / 2 - 40
         screen.blit(mtext, tRec)
+
+
 ###################################################################################
-#결과 이모티콘 그리기
+# 결과 이모티콘 그리기
 def drawResult():
     global DrawResult, result_ticks
     if result_ticks > 0:
@@ -133,8 +148,10 @@ def drawResult():
             result_ticks = 0
             DrawResult = 0
     screen.blit(resultImg[DrawResult], resultImgRec)
+
+
 ###################################################################################
-#========= 변수 =================================
+# ========= 변수 =================================
 isActive = True
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
@@ -143,17 +160,17 @@ score = 0
 chance = chance_MAX
 isColl = False
 CollDirection = 0
-DrawResult, result_ticks = 0,0
+DrawResult, result_ticks = 0, 0
 start_ticks = pygame.time.get_ticks()
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-#방향 아이콘
+# 방향 아이콘
 Directions = [Direction() for i in range(0, 10)]
-#타겟 박스
-targetArea = Rect(SCREEN_WIDTH/2, 400, SCREEN_WIDTH/2, 80)
-#결과 이모티콘
+# 타겟 박스
+targetArea = Rect(SCREEN_WIDTH / 2, 400, SCREEN_WIDTH / 2, 80)
+# 결과 이모티콘
 resultFileNames = ["normal.png", "good.png", "bad.png"]
 resultImg = []
 for i, name in enumerate(resultFileNames):
@@ -161,12 +178,12 @@ for i, name in enumerate(resultFileNames):
     resultImg[i] = pygame.transform.scale(resultImg[i], (150, 75))
 
 resultImgRec = resultImg[0].get_rect()
-resultImgRec.centerx = SCREEN_WIDTH/2 - resultImgRec.width/2 - 40
+resultImgRec.centerx = SCREEN_WIDTH / 2 - resultImgRec.width / 2 - 40
 resultImgRec.centery = targetArea.centery
 
-#========= 반복문 ===============================
-while(isActive):
-    screen.fill((0, 0, 0))
+# ========= 반복문 ===============================
+while (isActive):
+    screen.blit(background,(0, 0))
     eventProcess()
     # Directions[0].y = 100
     # Directions[0].rotate(1)
@@ -176,8 +193,4 @@ while(isActive):
     setText()
     drawResult()
     pygame.display.update()
-    time.sleep(60)
     clock.tick(400)
-
-
-##test
