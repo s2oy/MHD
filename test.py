@@ -28,7 +28,7 @@ def eventProcess():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 isActive = False
-            if chance > 0:
+            if health > 0:
                 if event.key == pygame.K_UP:  # 0
                     resultProcess(0)
                 if event.key == pygame.K_LEFT:  # 1
@@ -40,7 +40,7 @@ def eventProcess():
             else:
                 if event.key == pygame.K_SPACE:
                     score = 0
-                    chance = chance_MAX
+                    chance = health_MAX
                     for direc in Directions:
                         direc.y = -1
 ###################################################################################
@@ -73,9 +73,9 @@ class Direction(object):
 ###################################################################################
 #방향 아이콘 생성과 그리기
 def drawIcon():
-    global start_ticks,chance
+    global start_ticks,health
 
-    if chance <= 0:
+    if health <= 0:
         return
 
     elapsed_time = (pygame.time.get_ticks() - start_ticks)
@@ -89,7 +89,7 @@ def drawIcon():
 
     for direc in Directions:
         if direc.draw():
-            chance -= 1
+            health -= 1
 ###################################################################################
 #타겟 영역 그리기와 충돌 확인하기
 def draw_targetArea():
@@ -107,16 +107,16 @@ def draw_targetArea():
 ###################################################################################
 #문자 넣기
 def setText():
-    global score, chance
+    global score, health
     mFont = pygame.font.SysFont("굴림", 40)
 
     mtext = mFont.render(f'score : {score}', True, 'yellow')
     screen.blit(mtext, (10, 10, 0, 0))
 
-    mtext = mFont.render(f'chance : {chance}', True, 'yellow')
+    mtext = mFont.render(f'health : {health}', True, 'yellow')
     screen.blit(mtext, (10, 42, 0, 0))
 
-    if chance <= 0:
+    if health <= 0:
         mFont = pygame.font.SysFont("굴림", 90)
         mtext = mFont.render(f'Game over!!', True, 'red')
         tRec = mtext.get_rect()
@@ -138,9 +138,9 @@ def drawResult():
 isActive = True
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
-chance_MAX = 30
+health_MAX = 30
 score = 0
-chance = chance_MAX
+health = health_MAX
 isColl = False
 CollDirection = 0
 DrawResult, result_ticks = 0,0
