@@ -135,6 +135,7 @@ def setText():
         tRec = mtext.get_rect()
         tRec.centerx = SCREEN_WIDTH / 2
         tRec.centery = SCREEN_HEIGHT / 2 - 40
+        pygame.mixer.music.pause()
         screen.blit(mtext, tRec)
 
 
