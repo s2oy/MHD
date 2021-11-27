@@ -56,7 +56,7 @@ class Direction(object):
     def __init__(self):
         self.pos = None
         self.direction = 0
-        self.image = pygame.image.load(f"direction.png")
+        self.image = pygame.image.load(f"up1.png")
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.rotated_image = pygame.transform.rotate(self.image, 0)
         self.y = -1
@@ -123,15 +123,15 @@ def setText():
     global score, chance
     mFont = pygame.font.SysFont("굴림", 40)
 
-    mtext = mFont.render(f'score : {score}', True, 'yellow')
+    mtext = mFont.render(f'score : {score}', True, 'red')
     screen.blit(mtext, (10, 10, 0, 0))
 
-    mtext = mFont.render(f'chance : {chance}', True, 'yellow')
+    mtext = mFont.render(f'chance : {chance}', True, 'red')
     screen.blit(mtext, (10, 42, 0, 0))
 
     if chance <= 0:
         mFont = pygame.font.SysFont("굴림", 90)
-        mtext = mFont.render(f'Game over!!', True, 'red')
+        mtext = mFont.render(f'Game over!!', True, 'blue')
         tRec = mtext.get_rect()
         tRec.centerx = SCREEN_WIDTH / 2
         tRec.centery = SCREEN_HEIGHT / 2 - 40
@@ -171,7 +171,7 @@ Directions = [Direction() for i in range(0, 10)]
 # 타겟 박스
 targetArea = Rect(SCREEN_WIDTH / 2, 400, SCREEN_WIDTH / 2, 80)
 # 결과 이모티콘
-resultFileNames = ["normal.png", "good.png", "bad.png"]
+resultFileNames = ["Bad1.png", "Good1.png", "perfect1.png"]
 resultImg = []
 for i, name in enumerate(resultFileNames):
     resultImg.append(pygame.image.load(name))
