@@ -112,7 +112,7 @@ def draw_targetArea():
         if direc.pos.colliderect(targetArea):
             isColl = True
             CollDirection = direc
-            pygame.draw.rect(screen, (255, 0, 0), targetArea)
+            pygame.draw.rect(screen, (255, 255, 255, 0.3), targetArea)
             break
     pygame.draw.rect(screen, (0, 0, 0), targetArea, 3)
 
