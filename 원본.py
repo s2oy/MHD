@@ -69,7 +69,7 @@ class Direction(object):
 
     def draw(self):
         if self.y >= SCREEN_HEIGHT:
-            self.y = -1
+            self.y = 5
             return True
         elif self.y == -1:
             return False
@@ -92,7 +92,7 @@ def drawIcon():
         start_ticks = pygame.time.get_ticks()
         for direc in Directions:
             if direc.y == -1:
-                direc.y = 0
+                direc.y = 100
                 direc.rotate(direction=random.randint(0, 3))
                 break
 
@@ -124,10 +124,10 @@ def setText():
     mFont = pygame.font.SysFont("굴림", 40)
 
     mtext = mFont.render(f'score : {score}', True, 'red')
-    screen.blit(mtext, (10, 10, 0, 0))
+    screen.blit(mtext, (138, 10, 0, 0))
 
     mtext = mFont.render(f'health : {health}', True, 'red')
-    screen.blit(mtext, (10, 42, 0, 0))
+    screen.blit(mtext, (125, 42, 0, 0))
 
     if health <= 0:
         mFont = pygame.font.SysFont("굴림", 90)
