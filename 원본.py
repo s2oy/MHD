@@ -28,7 +28,7 @@ def resultProcess(direction):
 
 
 def eventProcess():
-    global isActive, score, chance
+    global isActive, score, health
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -45,7 +45,7 @@ def eventProcess():
             else:
                 if event.key == pygame.K_SPACE:
                     score = 0
-                    chance = chance_MAX
+                    health = health_MAX
                     for direc in Directions:
                         direc.y = -1
 
@@ -82,9 +82,9 @@ class Direction(object):
 ###################################################################################
 # 방향 아이콘 생성과 그리기
 def drawIcon():
-    global start_ticks, chance
+    global start_ticks, health
 
-    if chance <= 0:
+    if health <= 0:
         return
 
     elapsed_time = (pygame.time.get_ticks() - start_ticks)
@@ -98,7 +98,7 @@ def drawIcon():
 
     for direc in Directions:
         if direc.draw():
-            chance -= 1
+            health -= 1
 
 
 ###################################################################################
@@ -126,10 +126,10 @@ def setText():
     mtext = mFont.render(f'score : {score}', True, 'red')
     screen.blit(mtext, (10, 10, 0, 0))
 
-    mtext = mFont.render(f'chance : {chance}', True, 'red')
+    mtext = mFont.render(f'health : {health}', True, 'red')
     screen.blit(mtext, (10, 42, 0, 0))
 
-    if chance <= 0:
+    if health <= 0:
         mFont = pygame.font.SysFont("굴림", 90)
         mtext = mFont.render(f'Game over!!', True, 'blue')
         tRec = mtext.get_rect()
@@ -156,9 +156,9 @@ def drawResult():
 isActive = True
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
-chance_MAX = 30
+health_MAX = 30
 score = 0
-chance = chance_MAX
+health = health_MAX
 isColl = False
 CollDirection = 0
 DrawResult, result_ticks = 0, 0
