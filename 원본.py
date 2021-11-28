@@ -60,7 +60,7 @@ class Direction(object):
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.rotated_image = pygame.transform.rotate(self.image, 0)
         self.y = -1
-        self.x = int(SCREEN_WIDTH * 0.75) - (self.image.get_width() / 2)
+        self.x = int(SCREEN_WIDTH / 2) - (self.image.get_width() /2)
 
     def rotate(self, direction=0):
         self.direction = direction
