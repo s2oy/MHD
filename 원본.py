@@ -57,7 +57,7 @@ class Direction(object):
         self.pos = None
         self.direction = 0
         self.image = pygame.image.load(f"img/icon/up.png")
-        self.image = pygame.transform.scale(self.image, (60, 60))
+        self.image = pygame.transform.scale(self.image, (80, 80))
         self.rotated_image = pygame.transform.rotate(self.image, 0)
         self.y = -1
         self.x = int(SCREEN_WIDTH / 2) - (self.image.get_width() /2)
@@ -88,7 +88,7 @@ def drawIcon():
         return
 
     elapsed_time = (pygame.time.get_ticks() - start_ticks)
-    if elapsed_time > 400:
+    if elapsed_time > 700:
         start_ticks = pygame.time.get_ticks()
         for direc in Directions:
             if direc.y == -1:
@@ -170,7 +170,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # 방향 아이콘
 Directions = [Direction() for i in range(0, 10)]
 # 타겟 박스
-targetArea = Rect(SCREEN_WIDTH/3, 400, SCREEN_WIDTH /3, 40)
+targetArea = Rect(SCREEN_WIDTH/3, 500, SCREEN_WIDTH /3, 50)
 # 결과 이모티콘
 resultFileNames = ["img/icon/good.png", "img/icon/perfect.png", "img/icon/bad.png"]
 resultImg = []
