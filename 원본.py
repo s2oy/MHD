@@ -114,7 +114,7 @@ def draw_targetArea():
             CollDirection = direc
             pygame.draw.rect(screen, (255, 0, 0), targetArea)
             break
-    pygame.draw.rect(screen, (0, 255, 0), targetArea, 5)
+    pygame.draw.rect(screen, (0, 0, 0), targetArea, 3)
 
 
 ###################################################################################
@@ -170,7 +170,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # 방향 아이콘
 Directions = [Direction() for i in range(0, 10)]
 # 타겟 박스
-targetArea = Rect(SCREEN_WIDTH/3, 400, SCREEN_WIDTH /2, 40)
+targetArea = Rect(SCREEN_WIDTH/3, 400, SCREEN_WIDTH /3, 40)
 # 결과 이모티콘
 resultFileNames = ["img/icon/good.png", "img/icon/perfect.png", "img/icon/bad.png"]
 resultImg = []
@@ -179,7 +179,7 @@ for i, name in enumerate(resultFileNames):
     resultImg[i] = pygame.transform.scale(resultImg[i], (150, 75))
 
 resultImgRec = resultImg[0].get_rect()
-resultImgRec.centerx = SCREEN_WIDTH / 2 - resultImgRec.width / 2 - 40 #아이콘과 박스 width 정렬
+resultImgRec.centerx = SCREEN_WIDTH / 2.15 - resultImgRec.width / 2 - 40 #아이콘과 박스 width 정렬
 resultImgRec.centery = targetArea.centery
 
 # ========= 반복문 ===============================
