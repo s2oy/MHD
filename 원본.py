@@ -120,7 +120,7 @@ def draw_targetArea():
 ###################################################################################
 # 문자 넣기
 def setText():
-    global score, chance
+    global score, health
     mFont = pygame.font.SysFont("굴림", 40)
 
     mtext = mFont.render(f'score : {score}', True, 'red')
