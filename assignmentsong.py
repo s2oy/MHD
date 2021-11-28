@@ -5,11 +5,11 @@ from pygame.rect import *
 # pygame 초기화
 pygame.init()
 pygame.display.set_caption("MHD")
-background = pygame.image.load("img/background.png")
+background = pygame.image.load("background.png")
 
 pygame.init()
 pygame.display.set_caption("mohamD")
-pygame.mixer.music.load("mp3/lastNightStory.mp3")
+pygame.mixer.music.load("assignmentSong.mp3")
 pygame.mixer.music.play(-1)
 
 
@@ -56,7 +56,7 @@ class Direction(object):
     def __init__(self):
         self.pos = None
         self.direction = 0
-        self.image = pygame.image.load(f"img/icon/up.png")
+        self.image = pygame.image.load(f"up.png")
         self.image = pygame.transform.scale(self.image, (80, 80))
         self.rotated_image = pygame.transform.rotate(self.image, 0)
         self.y = -1
@@ -172,7 +172,7 @@ Directions = [Direction() for i in range(0, 10)]
 # 타겟 박스
 targetArea = Rect(SCREEN_WIDTH/3, 500, SCREEN_WIDTH /3, 50)
 # 결과 이모티콘
-resultFileNames = ["img/icon/good.png", "img/icon/perfect.png", "img/icon/bad.png"]
+resultFileNames = ["good.png", "perfect.png", "bad.png"]
 resultImg = []
 for i, name in enumerate(resultFileNames):
     resultImg.append(pygame.image.load(name))
