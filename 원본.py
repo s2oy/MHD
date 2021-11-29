@@ -100,7 +100,6 @@ def drawIcon():
         if direc.draw():
             health -= 1
 
-
 ###################################################################################
 # 타겟 영역 그리기와 충돌 확인하기
 def draw_targetArea():
@@ -121,12 +120,12 @@ def draw_targetArea():
 # 문자 넣기
 def setText():
     global score, health
-    mFont = pygame.font.SysFont("굴림", 40)
+    mFont = pygame.font.SysFont("Helvetica", 30)
 
-    mtext = mFont.render(f'score : {score}', True, 'red')
+    mtext = mFont.render(f'score : {score}', True, 'black')
     screen.blit(mtext, (138, 10, 0, 0))
 
-    mtext = mFont.render(f'health : {health}', True, 'red')
+    mtext = mFont.render(f'health : {health}', True, 'black')
     screen.blit(mtext, (125, 42, 0, 0))
 
     if health <= 0:
@@ -145,7 +144,7 @@ def drawResult():
     global DrawResult, result_ticks
     if result_ticks > 0:
         elapsed_time = (pygame.time.get_ticks() - result_ticks)
-        if elapsed_time > 400:
+        if elapsed_time > 600:
             result_ticks = 0
             DrawResult = 0
     screen.blit(resultImg[DrawResult], resultImgRec)
