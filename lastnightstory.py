@@ -4,7 +4,6 @@ from pygame.rect import *
 def playlastnight():
 # pygame 초기화
     pygame.init()
-
     pygame.display.set_caption("MHD")
     background = pygame.image.load("background.png")
 
@@ -12,7 +11,38 @@ def playlastnight():
     pygame.display.set_caption("mohamD")
     pygame.mixer.music.load("lastNightStory.mp3")
     pygame.mixer.music.play(-1)
-
+# ======== 함수 ===============================
+# 키 이벤트 처리하기
+    def resultProcess(direction):
+        global isColl, score, DrawResult, result_ticks
+        if isColl and CollDirection.direction == direction:
+            score += 10
+            CollDirection.y = -1
+            DrawResult = 1
+        else:
+            DrawResult = 2
+        result_ticks = pygame.time.get_ticks()
+    def eventProcess():
+        global isActive, score, health
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    isActive = False
+                if health > 0:
+                    if event.key == pygame.K_UP:  # 0
+                        resultProcess(0)
+                    if event.key == pygame.K_LEFT:  # 1
+                        resultProcess(1)
+                    if event.key == pygame.K_DOWN:  # 2
+                        resultProcess(2)
+                    if event.key == pygame.K_RIGHT:  # 3
+                        resultProcess(3)
+                else:
+                    if event.key == pygame.K_SPACE:
+                        score = 0
+                        health = health_MAX
+                        for direc in Directions:
+                            direc.y = -1
 
     # 방향 아이콘 클래스
     class Direction(object):
@@ -43,11 +73,8 @@ def playlastnight():
 
         ###################################################################################
         # 방향 아이콘 생성과 그리기
-
-
     def drawIcon():
         global start_ticks, health
-
         if health <= 0:
             return
 
@@ -64,10 +91,8 @@ def playlastnight():
             if direc.draw():
                 health -= 1
 
-        ###################################################################################
-        # 타겟 영역 그리기와 충돌 확인하기
-
-
+###################################################################################
+# 타겟 영역 그리기와 충돌 확인하기
     def draw_targetArea():
         global isColl, CollDirection
         isColl = False
@@ -83,8 +108,6 @@ def playlastnight():
 
         ###################################################################################
         # 문자 넣기
-
-
     def setText():
         global score, health
         mFont = pygame.font.SysFont("굴림", 40)
@@ -116,45 +139,6 @@ def playlastnight():
                 result_ticks = 0
                 DrawResult = 0
         screen.blit(resultImg[DrawResult], resultImgRec)
-
-        # ======== 함수 ===============================
-        # 키 이벤트 처리하기
-
-
-    def resultProcess(direction):
-        global isColl, score, DrawResult, result_ticks
-
-        if isColl and CollDirection.direction == direction:
-            score += 10
-            CollDirection.y = -1
-            DrawResult = 1
-        else:
-            DrawResult = 2
-        result_ticks = pygame.time.get_ticks()
-
-
-    def eventProcess():
-        global isActive, score, health
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    isActive = False
-                if health > 0:
-                    if event.key == pygame.K_UP:  # 0
-                        resultProcess(0)
-                    if event.key == pygame.K_LEFT:  # 1
-                        resultProcess(1)
-                    if event.key == pygame.K_DOWN:  # 2
-                        resultProcess(2)
-                    if event.key == pygame.K_RIGHT:  # 3
-                        resultProcess(3)
-                else:
-                    if event.key == pygame.K_SPACE:
-                        score = 0
-                        health = health_MAX
-                        for direc in Directions:
-                            direc.y = -1
-
     ###################################################################################
     # ========= 변수 =================================
     isActive = True
@@ -179,7 +163,7 @@ def playlastnight():
     global screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    # 방향 아이콘
+    # 방향 아이콘==>여기 i 문제있음
     Directions = [Direction() for i in range(0, 10)]
     # 타겟 박스
     targetArea = Rect(SCREEN_WIDTH/3, 500, SCREEN_WIDTH /3, 50)
