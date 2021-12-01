@@ -113,15 +113,15 @@ def playlastnight():
         global score, health
         mFont = pygame.font.SysFont("굴림", 40)
 
-        mtext = mFont.render(f'score : {score}', True, 'red')
+        mtext = mFont.render(f'score : {score}', True, 'black')
         screen.blit(mtext, (138, 10, 0, 0))
 
-        mtext = mFont.render(f'health : {health}', True, 'red')
+        mtext = mFont.render(f'health : {health}', True, 'black')
         screen.blit(mtext, (125, 42, 0, 0))
 
         if health <= 0:
             mFont = pygame.font.SysFont("굴림", 90)
-            mtext = mFont.render(f'Game over!!', True, 'blue')
+            mtext = mFont.render(f'Game over!!', True, 'red')
             tRec = mtext.get_rect()
             tRec.centerx = SCREEN_WIDTH / 2
             tRec.centery = SCREEN_HEIGHT / 2 - 40
@@ -152,7 +152,7 @@ def playlastnight():
     global SCREEN_HEIGHT
     SCREEN_HEIGHT = 600
     global health_MAX
-    health_MAX = 30
+    health_MAX = 5
     global score
     score = 0
     health = health_MAX
