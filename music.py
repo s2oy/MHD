@@ -5,6 +5,7 @@ from sketerboy import playsketerboy
 from sakuranbo import playsakuranbo
 from assignmentSong import playassignmentsong
 from white import playwhite
+
 music = {'어젯밤 이야기':0, '과제곡':0,'화이트':0,'사쿠란보':0,'스케이터보이':0}
 order = []
 sum = 0
@@ -12,7 +13,8 @@ sum = 0
 def select(item):
     global sum
 
-    if item not in music:
+    if item not in music\
+            :
         print("선택 안함")
     this_music = music.get(item)
     sum += this_music
