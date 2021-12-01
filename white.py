@@ -1,13 +1,12 @@
 import pygame
 import random
+from pygame.constants import  QUIT
 from pygame.rect import *
-from pygame.constants import QUIT
-
 def playwhite():
 # pygame 초기화
     pygame.init()
     pygame.display.set_caption("MHD")
-    background = pygame.image.load("img/background/winter.png")
+    background = pygame.image.load("img/background/background.png")
 
     pygame.init()
     pygame.display.set_caption("mohamD")
@@ -50,7 +49,7 @@ def playwhite():
         def __init__(self):
             self.pos = None
             self.direction = 0
-            self.image = pygame.image.load(f"img/up.png")
+            self.image = pygame.image.load(f"up.png")
             self.image = pygame.transform.scale(self.image, (80, 80))
             self.rotated_image = pygame.transform.rotate(self.image, 0)
             self.y = -1
@@ -127,11 +126,9 @@ def playwhite():
             tRec.centery = SCREEN_HEIGHT / 2 - 40
             pygame.mixer.music.pause()
             screen.blit(mtext, tRec)
-
-        # 종료
         for event in pygame.event.get():
             if event.type == QUIT:
-                pygame.quit()
+                    pygame.quit()
         ###################################################################################
         # 결과 이모티콘 그리기ㅇㅇ
     def drawResult():
@@ -173,7 +170,7 @@ def playwhite():
     # 타겟 박스
     targetArea = Rect(SCREEN_WIDTH/3, 500, SCREEN_WIDTH /3, 50)
     # 결과 이모티콘
-    resultFileNames = ["img/good.png", "img/perfect.png", "img/bad.png"]
+    resultFileNames = ["good.png", "perfect.png", "bad.png"]
     resultImg = []
     for i, name in enumerate(resultFileNames):
         resultImg.append(pygame.image.load(name))
