@@ -1,6 +1,7 @@
 import pygame
 import random
 from pygame.rect import *
+import cv2
 def playlastnight():
 # pygame 초기화
     pygame.init()
@@ -43,7 +44,6 @@ def playlastnight():
                         health = health_MAX
                         for direc in Directions:
                             direc.y = -1
-
     # 방향 아이콘 클래스
     class Direction(object):
         def __init__(self):
@@ -126,11 +126,9 @@ def playlastnight():
             tRec.centery = SCREEN_HEIGHT / 2 - 40
             pygame.mixer.music.pause()
             screen.blit(mtext, tRec)
-
+            pygame.quit()
         ###################################################################################
         # 결과 이모티콘 그리기
-
-
     def drawResult():
         global DrawResult, result_ticks
         if result_ticks > 0:
@@ -142,6 +140,7 @@ def playlastnight():
     ###################################################################################
     # ========= 변수 =================================
     isActive = True
+    global isColl
     global health
     global SCREEN_WIDTH
     SCREEN_WIDTH = 400
@@ -153,6 +152,7 @@ def playlastnight():
     score = 0
     health = health_MAX
     isColl = False
+    global CollDirection
     CollDirection = 0
     global DrawResult, result_ticks
     DrawResult, result_ticks = 0, 0
@@ -162,7 +162,7 @@ def playlastnight():
     clock = pygame.time.Clock()
     global screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
+    global i
     # 방향 아이콘==>여기 i 문제있음
     Directions = [Direction() for i in range(0, 10)]
     # 타겟 박스
@@ -180,17 +180,18 @@ def playlastnight():
 
     # ========= 반복문 ===============================
     while (isActive):
-        screen.blit(background,(0, 0))
-        eventProcess()
-        # Directions[0].y = 100
-        # Directions[0].rotate(1)
-        # Directions[0].draw()
-        draw_targetArea()
-        drawIcon()
-        setText()
-        drawResult()
-        pygame.display.update()
-        clock.tick(400)
-###################################################################################
+            screen.blit(background,(0, 0))
+            eventProcess()
+            # Directions[0].y = 100
+            # Directions[0].rotate(0)
+            # Directions[0].draw()
+            draw_targetArea()
+            drawIcon()
+            setText()
+            drawResult()
+            pygame.display.update()
+            clock.tick(400)
+
+#################################################################################
 if __name__ == '__main__':
     playlastnight()
