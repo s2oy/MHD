@@ -5,11 +5,11 @@ def playsketerboy():
 # pygame 초기화
     pygame.init()
     pygame.display.set_caption("MHD")
-    background = pygame.image.load("background.png")
+    background = pygame.image.load("img/background/background.png")
 
     pygame.init()
     pygame.display.set_caption("mohamD")
-    pygame.mixer.music.load("sketerboy.mp3")
+    pygame.mixer.music.load("mp3/sketerboy.mp3")
     pygame.mixer.music.play(-1)
 # ======== 함수 ===============================
 # 키 이벤트 처리하기
