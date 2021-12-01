@@ -5,11 +5,11 @@ from pygame.rect import *
 # pygame 초기화
 pygame.init()
 pygame.display.set_caption("MHD")
-background = pygame.image.load("background.png")
+background = pygame.image.load("img/background.png")
 
 pygame.init()
 pygame.display.set_caption("mohamD")
-pygame.mixer.music.load("어젯밤이야기.mp3")
+pygame.mixer.music.load("mp3/lastNightStory.mp3")
 pygame.mixer.music.play(-1)
 
 
@@ -28,7 +28,7 @@ def resultProcess(direction):
 
 
 def eventProcess():
-    global isActive, score, chance
+    global isActive, score, health
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -45,7 +45,7 @@ def eventProcess():
             else:
                 if event.key == pygame.K_SPACE:
                     score = 0
-                    chance = chance_MAX
+                    health = health_MAX
                     for direc in Directions:
                         direc.y = -1
 
@@ -56,7 +56,7 @@ class Direction(object):
     def __init__(self):
         self.pos = None
         self.direction = 0
-        self.image = pygame.image.load(f"up1.png")
+        self.image = pygame.image.load(f"img/icon/up.png")
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.rotated_image = pygame.transform.rotate(self.image, 0)
         self.y = -1
@@ -82,9 +82,9 @@ class Direction(object):
 ###################################################################################
 # 방향 아이콘 생성과 그리기
 def drawIcon():
-    global start_ticks, chance
+    global start_ticks, health
 
-    if chance <= 0:
+    if health <= 0:
         return
 
     elapsed_time = (pygame.time.get_ticks() - start_ticks)
@@ -98,7 +98,7 @@ def drawIcon():
 
     for direc in Directions:
         if direc.draw():
-            chance -= 1
+            health -= 1
 
 
 ###################################################################################
@@ -126,10 +126,10 @@ def setText():
     mtext = mFont.render(f'score : {score}', True, 'red')
     screen.blit(mtext, (10, 10, 0, 0))
 
-    mtext = mFont.render(f'chance : {chance}', True, 'red')
+    mtext = mFont.render(f'health : {health}', True, 'red')
     screen.blit(mtext, (10, 42, 0, 0))
 
-    if chance <= 0:
+    if health <= 0:
         mFont = pygame.font.SysFont("굴림", 90)
         mtext = mFont.render(f'Game over!!', True, 'blue')
         tRec = mtext.get_rect()
@@ -156,9 +156,9 @@ def drawResult():
 isActive = True
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
-chance_MAX = 30
+health_MAX = 30
 score = 0
-chance = chance_MAX
+health = health_MAX
 isColl = False
 CollDirection = 0
 DrawResult, result_ticks = 0, 0
@@ -172,7 +172,7 @@ Directions = [Direction() for i in range(0, 10)]
 # 타겟 박스
 targetArea = Rect(SCREEN_WIDTH / 2, 400, SCREEN_WIDTH / 2, 80)
 # 결과 이모티콘
-resultFileNames = ["Bad1.png", "Good1.png", "perfect1.png"]
+resultFileNames = ["img/icon/bad.png", "img/icon/good.png", "img/icon/perfect.png"]
 resultImg = []
 for i, name in enumerate(resultFileNames):
     resultImg.append(pygame.image.load(name))
