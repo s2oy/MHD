@@ -1,5 +1,7 @@
 import pygame
 import random
+
+from pygame.constants import QUIT
 from pygame.rect import *
 def playassignmentsong():
 # pygame 초기화
@@ -125,8 +127,9 @@ def playassignmentsong():
             tRec.centery = SCREEN_HEIGHT / 2 - 40
             pygame.mixer.music.pause()
             screen.blit(mtext, tRec)
-        if (pygame.KEYUP == pygame.K_ESCAPE):  # esc 키를 누르고 땠을때 종료 실행
-                pygame.quit()
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                    pygame.quit()
         ###################################################################################
         # 결과 이모티콘 그리기ㅇㅇ
     def drawResult():

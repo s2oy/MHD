@@ -1,5 +1,7 @@
 import pygame
 import random
+
+from pygame.constants import  QUIT
 from pygame.rect import *
 def playsketerboy():
 # pygame 초기화
@@ -125,7 +127,9 @@ def playsketerboy():
             tRec.centery = SCREEN_HEIGHT / 2 - 40
             pygame.mixer.music.pause()
             screen.blit(mtext, tRec)
-            pygame.quit()
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                    pygame.quit()
         ###################################################################################
         # 결과 이모티콘 그리기ㅇㅇ
     def drawResult():
