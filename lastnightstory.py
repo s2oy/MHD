@@ -128,7 +128,7 @@ def playlastnight():
             screen.blit(mtext, tRec)
             pygame.quit()
         ###################################################################################
-        # 결과 이모티콘 그리기
+        # 결과 이모티콘 그리기ㅇㅇ
     def drawResult():
         global DrawResult, result_ticks
         if result_ticks > 0:
