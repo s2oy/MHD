@@ -1,7 +1,7 @@
 import pygame
 import random
 from pygame.rect import *
-def playwhite():
+def playlastnight():
 # pygame 초기화
     pygame.init()
     pygame.display.set_caption("MHD")
@@ -9,7 +9,7 @@ def playwhite():
 
     pygame.init()
     pygame.display.set_caption("mohamD")
-    pygame.mixer.music.load("white.mp3")
+    pygame.mixer.music.load("lastNightStory.mp3")
     pygame.mixer.music.play(-1)
 # ======== 함수 ===============================
 # 키 이벤트 처리하기
@@ -125,7 +125,7 @@ def playwhite():
             tRec.centery = SCREEN_HEIGHT / 2 - 40
             pygame.mixer.music.pause()
             screen.blit(mtext, tRec)
-        if (pygame.KEYUP == pygame.K_ESCAPE):  # esc 키를 누르고 땠을때 종료 실행
+            if (pygame.KEYUP == pygame.K_ESCAPE):  # esc 키를 누르고 땠을때 종료 실행
                 pygame.quit()
         ###################################################################################
         # 결과 이모티콘 그리기ㅇㅇ
@@ -193,4 +193,4 @@ def playwhite():
             clock.tick(400)
 #################################################################################
 if __name__ == '__main__':
-    playwhite()
+    playlastnight()
